@@ -11,7 +11,7 @@ app.use(express.json());
 const contactController = require('./controller/contact.controller');
 
 app.get('/', (req, res)=> {
-    res.json({message: ' hello ong gia'});
+    res.json({message: ' Welcome to contact book application. '});
 });
 
 app.route('/api/contacts')
