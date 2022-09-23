@@ -12,11 +12,14 @@ exports.create = async (req,res,next) => {
         const contact = await contactService.create(req.body);
         return res.send(contact);
     } catch (error){
-    return next(
-        new ApiError(500, 'An error occurred while creating the contact')
+        console.log(error);
+        return next(
+            new ApiError(500, 'An error occurred while creating the contact')
      );
     }
 };
+
+//find All Handlers
 exports.findAll = async (req,res,next) => {
     let contacts = [];
 
@@ -38,6 +41,8 @@ exports.findAll = async (req,res,next) => {
         }
         return res.send(contacts);
     }; 
+
+    //find a single contacts
 exports.findOne = async (req,res,next) => {
     try{
         const contactService = new ContactService();
@@ -52,6 +57,7 @@ exports.findOne = async (req,res,next) => {
         );
     }
 };
+// update handler
 exports.update = async (req, res,next) => {
     if(Object.keys(req.body).length === 0){
         return next(new ApiError(400,'Data to update can not be empty'));
@@ -71,6 +77,7 @@ exports.update = async (req, res,next) => {
     }
 };
 
+//detele a contact 
 exports.delete = async (req, res, next) => {
     try{
         const contactService = new ContactService();
@@ -87,6 +94,8 @@ exports.delete = async (req, res, next) => {
             )
         }
     };
+
+//delete all contacts    
 exports.deleteAll = async (req,res,next) => {
     try{
         const contactService = new ContactService();
@@ -103,7 +112,7 @@ exports.deleteAll = async (req,res,next) => {
     }
 }
 
-};
+//find all favorite
 exports.findAllFavorite = async (req, res,next) => {
     try{
         const contactService = new ContactService();

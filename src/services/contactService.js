@@ -21,7 +21,7 @@ class ContactService {
     }
     async create(payload){
         const contact = this.#getContact(payload);
-        const [id] = await this.contacts.inset(contact);
+        const [id] = await this.contacts.insert(contact);
         return {id, ...contact}
     }
     async all(){
@@ -33,12 +33,20 @@ class ContactService {
         .where('name', 'like', `%${name}%`)
         .select('*');
     }
+
+    async update(id,payload){
+        const update = this.#getContact(payload);
+        return await this.contacts.where('id',id).update(update);
+    }
+
     async delete(id){
         return await this.contacts.where('id', id).del();
     }
+
     async allFavorite(){
         return await this.contacts.where('favorite',1).select('*');
     }
+    
     async deleteAll(){
         return await this.contacts.del();
     }
