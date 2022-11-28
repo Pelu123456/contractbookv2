@@ -1,10 +1,10 @@
-require('dotenv').config();
-const app = require('./src/app');
+require("dotenv").config();
+const app = require("./src/app");
 
-// start server 
+// start server
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 3000;
 console.log(PORT);
 app.listen(PORT, () => {
-    console.log(`server is runing on port ${PORT}.`);
+  console.log(`server is runing on port ${PORT}.`);
 });
